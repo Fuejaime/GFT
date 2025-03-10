@@ -5,7 +5,6 @@ import com.example.starwars.domain.exception.PriceNotFoundExceptionDomain;
 import com.example.starwars.domain.model.Price;
 import com.example.starwars.domain.model.RequestPrice;
 import com.example.starwars.domain.usecase.PriceUseCase;
-import com.example.starwars.infrastructure.exception.PriceNotFoundException;
 import com.example.starwars.model.PriceGet200Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
