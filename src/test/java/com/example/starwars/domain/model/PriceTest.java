@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class PriceTest {
+class PriceTest {
 
     @Test
-    public void testPriceBuilder() {
+    void testPriceBuilder() {
         // Arrange
         LocalDateTime now = LocalDateTime.now();
         Price price = Price.builder()
@@ -40,7 +40,7 @@ public class PriceTest {
     }
 
     @Test
-    public void testPriceGettersAndSetters() {
+    void testPriceGettersAndSetters() {
         // Arrange
         LocalDateTime now = LocalDateTime.now();
         Price price = new Price();
@@ -65,7 +65,7 @@ public class PriceTest {
     }
 
     @Test
-    public void testPriceEqualsAndHashCode() {
+    void testPriceEqualsAndHashCode() {
         // Arrange
         LocalDateTime now = LocalDateTime.now();
         Price price1 = Price.builder()
@@ -92,11 +92,11 @@ public class PriceTest {
 
         // Act & Assert
         assertThat(price1).isEqualTo(price2);
-        assertThat(price1.hashCode()).isEqualTo(price2.hashCode());
+        assertThat(price1.hashCode()).hasSameHashCodeAs(price2.hashCode());
     }
 
     @Test
-    public void testPriceToString() {
+    void testPriceToString() {
         // Arrange
         LocalDateTime now = LocalDateTime.now();
         Price price = Price.builder()

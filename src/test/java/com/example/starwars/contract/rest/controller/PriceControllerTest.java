@@ -3,9 +3,7 @@ package com.example.starwars.contract.rest.controller;
 import com.example.starwars.domain.exception.PriceNotFoundExceptionDomain;
 import com.example.starwars.domain.model.Price;
 import com.example.starwars.domain.model.RequestPrice;
-import com.example.starwars.domain.repository.GetPriceRepository;
 import com.example.starwars.domain.usecase.PriceUseCase;
-import com.example.starwars.infrastructure.exception.PriceNotFoundException;
 import com.example.starwars.model.PriceGet200Response;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -33,7 +30,7 @@ class PriceControllerTest {
     private PriceUseCase priceUseCase;
 
     @Test
-    public void testPriceGet() {
+    void testPriceGet() {
         // Arrange
         LocalDateTime now = LocalDateTime.now();
         Price price = getPrice(now);
@@ -68,7 +65,7 @@ class PriceControllerTest {
         ResponseEntity<PriceGet200Response> responseEntity = underTest.priceGet(now.toString(), 1, 1);
 
         // Assert
-        assertEquals(404, responseEntity.getStatusCodeValue());
+        assertEquals(404, responseEntity.getStatusCode().value());
         verify(priceUseCase).getPrice(requestPrice);
     }
 
