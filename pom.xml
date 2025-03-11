@@ -19,7 +19,8 @@
 		<spring-boot.version>3.3.2</spring-boot.version>
 		<junit-jupiter.version>5.9.3</junit-jupiter.version>
 		<karate.version>1.4.1</karate.version>
-		<graalvm.version>24.0.2</graalvm.version> <!-- Asegúrate de usar versiones compatibles -->
+		<graalvm.version>24.0.2</graalvm.version>
+		<jacoco.version>0.8.2</jacoco.version> <!-- Asegúrate de usar versiones compatibles -->
 	</properties>
 
 	<dependencies>
@@ -168,6 +169,28 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<!-- Inyecta el agente de JaCoCo para capturar la cobertura -->
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- Genera el informe de cobertura después de las pruebas -->
+					<execution>
+						<id>report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -208,13 +231,17 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
 				<configuration>
-					<argLine>-Dpolyglotimpl.DisableVersionChecks=true</argLine>
 					<includes>
 						<include>**/*Tests.java</include>
 						<include>**/*Test.java</include>
 						<include>**/*TestCase.java</include>
 					</includes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version>
 			</plugin>
 		</plugins>
 	</build>
