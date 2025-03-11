@@ -38,5 +38,5 @@ jobs:
           mvn sonar:sonar \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=fuejaime  \
-            -Dsonar.projectKey=Fuejaime_BCNC---TEST \
+            -Dsonar.projectKey=Fuejaime_GFT \
             -Dsonar.token=${{ secrets.SONAR_TOKEN }}
